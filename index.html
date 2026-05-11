@@ -151,13 +151,13 @@
       -webkit-text-stroke: 1.5px var(--accent);
     }
     .hero-sub {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: var(--muted2);
       max-width: 550px;
       margin-bottom: 3.5rem;
       font-weight: 300;
       line-height: 1.8;
-      min-height: 1.8em;
+      min-height: 3.6em; /* Allow for 2 lines on mobile without jumping */
     }
     .typewriter-cursor {
       display: inline-block;
@@ -269,7 +269,7 @@
 
     /* ── SKILLS with Progress Bars ── */
     .skills-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px;
       background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
     }
     .skill-card { background: var(--surface); padding: 3rem; transition: var(--transition); position: relative; }
@@ -298,7 +298,7 @@
     #services { background: var(--bg); }
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
     }
     .service-card {
@@ -547,8 +547,40 @@
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 1024px) { .about-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 4rem; } .nav-links { gap: 1.5rem; } .services-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 768px) { nav { padding: 1rem 5vw; } .nav-links { display: none; } h1 { font-size: clamp(3rem, 15vw, 5.5rem); } .project-item { grid-template-columns: 1fr; padding: 2.5rem; gap: 2rem; } .project-item:hover { padding-left: 2.5rem; } .project-meta { align-items: flex-start; } .about-stats { grid-template-columns: 1fr; } section { padding: 6rem 5vw; } .services-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 1024px) { 
+      .about-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 4rem; } 
+      .nav-links { gap: 1.5rem; } 
+      .services-grid { grid-template-columns: repeat(2, 1fr); } 
+    }
+
+    @media (max-width: 768px) { 
+      section { padding: 5rem 6vw; }
+      nav { padding: 1.2rem 6vw; } 
+      .nav-links { display: none; } 
+      h1 { font-size: clamp(2.8rem, 12vw, 4.5rem); margin-bottom: 1.5rem; } 
+      .hero-sub { font-size: 1rem; margin-bottom: 2.5rem; }
+      h2 { font-size: 2.5rem; margin-bottom: 3rem; }
+      .project-item { 
+        grid-template-columns: 1fr; 
+        padding: 2.5rem 2rem; 
+        gap: 1.5rem; 
+      } 
+      .project-item:hover { padding-left: 2rem; } 
+      .project-img-wrapper { width: 100%; height: 200px; }
+      .project-meta { align-items: flex-start; } 
+      .about-stats { grid-template-columns: 1fr; } 
+      .services-grid { grid-template-columns: 1fr; } 
+      .whatsapp-tooltip { display: none; } /* Tooltip can be annoying on mobile touch */
+      .whatsapp-btn { bottom: 1.5rem; right: 1.5rem; width: 50px; height: 50px; font-size: 1.5rem; }
+      .contact-wrapper { gap: 3rem; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 2rem; }
+      .stat-num { font-size: 2.5rem; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+    }
   </style>
 </head>
 <body>
