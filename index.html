@@ -693,7 +693,7 @@
           </p>
           <div class="about-stats">
             <div class="stat-item">
-              <div class="stat-num">+15</div>
+              <div class="stat-num" id="project-count">+3</div>
               <div class="stat-label">Proyectos terminados</div>
             </div>
             <div class="stat-item">
@@ -1143,6 +1143,16 @@
                 });
             });
         }
+
+        // ── 8. DYNAMIC PROJECT COUNTER ──
+        const updateProjectCount = () => {
+            const projectItems = document.querySelectorAll('.project-item');
+            const countDisplay = document.getElementById('project-count');
+            if (countDisplay) {
+                countDisplay.textContent = `+${projectItems.length}`;
+            }
+        };
+        updateProjectCount();
     });
   </script>
   <!-- WhatsApp Button -->
