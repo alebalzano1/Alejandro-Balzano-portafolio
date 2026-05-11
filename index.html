@@ -301,7 +301,7 @@
     }
 
     /* ── ABOUT ── */
-    #about { background: rgba(19, 19, 18, 0.97); }
+    #about { background: rgba(19, 19, 18, 0.85); }
     .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem; align-items: start; }
     .about-text p { color: var(--muted2); margin-bottom: 1.5rem; font-weight: 300; font-size: 1.1rem; }
     .about-stats {
@@ -341,7 +341,7 @@
     .progress-bar-fill { width: 0; height: 100%; background: var(--accent); border-radius: 2px; transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1); }
 
     /* ── SERVICES ── */
-    #services { background: var(--bg); }
+    #services { background: transparent; }
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -516,7 +516,7 @@
     }
 
     /* ── PROJECTS ── */
-    #projects { background: rgba(19, 19, 18, 0.97); }
+    #projects { background: rgba(19, 19, 18, 0.85); }
     .filters-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 3rem; }
     .filter-btn {
       background: transparent; border: 1px solid var(--border); color: var(--muted2);
@@ -1009,7 +1009,7 @@
 
         function drawGrid() {
             ctx.clearRect(0, 0, width, height);
-            ctx.fillStyle = "rgba(200, 241, 53, 0.15)";
+            ctx.fillStyle = "rgba(200, 241, 53, 0.4)";
             points.forEach(p => {
                 p.z -= 0.005; if (p.z <= 0) p.z = 2;
                 const pSize = 1.5 / p.z;
