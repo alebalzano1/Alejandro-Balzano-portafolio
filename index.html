@@ -950,18 +950,25 @@
             </a>
           </div>
         </div>
-        <form class="contact-form fade-in" id="portfolio-contact">
+        <form class="contact-form fade-in" id="portfolio-contact" action="https://formsubmit.co/arielbalzano10@gmail.com" method="POST">
+          <!-- Honeypot -->
+          <input type="text" name="_honey" style="display:none">
+          <!-- Disable Captcha for AJAX -->
+          <input type="hidden" name="_captcha" value="false">
+          <!-- Custom Subject -->
+          <input type="hidden" name="_subject" value="Nuevo mensaje desde tu Portafolio!">
+
           <div class="form-group">
             <label>NOMBRE</label>
-            <input type="text" id="user_name" placeholder="Juan Pérez" required />
+            <input type="text" name="name" id="user_name" placeholder="Juan Pérez" required />
           </div>
           <div class="form-group">
             <label>EMAIL</label>
-            <input type="email" id="user_email" placeholder="juan@ejemplo.com" required />
+            <input type="email" name="email" id="user_email" placeholder="juan@ejemplo.com" required />
           </div>
           <div class="form-group">
             <label>MENSAJE</label>
-            <textarea id="message" rows="5" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
+            <textarea name="message" id="message" rows="5" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
           </div>
           <button type="submit" class="btn btn-primary" style="align-self:flex-start">
             Enviar mensaje <i class="fas fa-paper-plane"></i>
@@ -1097,13 +1104,43 @@
                 e.preventDefault();
                 const btn = contactForm.querySelector('button');
                 const originalText = btn.innerHTML;
+                
+                // Animación de carga
                 btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Enviando...';
                 btn.disabled = true;
-                setTimeout(() => {
+
+                const formData = new FormData(contactForm);
+                const data = Object.fromEntries(formData.entries());
+
+                fetch("https://formsubmit.co/ajax/arielbalzano10@gmail.com", {
+                    method: "POST",
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(res => {
                     btn.innerHTML = '<i class="fas fa-check"></i> Mensaje enviado';
                     btn.style.background = '#3a8a2a';
-                    setTimeout(() => { btn.innerHTML = originalText; btn.style.background = ''; contactForm.reset(); btn.disabled = false; }, 3000);
-                }, 1500);
+                    contactForm.reset();
+                    setTimeout(() => { 
+                        btn.innerHTML = originalText; 
+                        btn.style.background = ''; 
+                        btn.disabled = false; 
+                    }, 4000);
+                })
+                .catch(error => {
+                    console.error(error);
+                    btn.innerHTML = '<i class="fas fa-times"></i> Error al enviar';
+                    btn.style.background = '#e8001e';
+                    setTimeout(() => { 
+                        btn.innerHTML = originalText; 
+                        btn.style.background = ''; 
+                        btn.disabled = false; 
+                    }, 4000);
+                });
             });
         }
     });
